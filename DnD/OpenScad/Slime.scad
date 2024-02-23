@@ -10,7 +10,7 @@ hasBase = true;
 baseHeight = 2.5;
 
 //Base diameter in mm
-baseD = 20.0;
+baseD = 19.9;
 
 /* [Slime] */
 //Slime body diameter in mm
@@ -21,6 +21,40 @@ hasMouth = true;
 
 //Mouth size of the slime in mm
 mouth = 5.1;
+
+/* [Eyes] */
+//determine whether the slime has a middle eye
+hasMEye = false;
+
+//Determine middle eye diameter in mm
+mEyeSize = 4;
+
+//Adjust middle eye position on the X axis in mm
+mEyeX = 6.4;
+
+//Adjust the middle eye position on the Y axis in mm
+mEyeY = 0.1;
+
+//Adjust the middle eye position on the Z axis in mm
+mEyeZ = 6.9;
+
+//Determine whether the slime has the right eye or not
+hasREye = true;
+
+//Determine the size of the right eye in mm
+rEyeSize = 4;
+
+//Adjust the position of the right eye on the X axis in mm
+rEyeX = 5.5;
+
+//Adjust the position of the right eye on the Y axis in mm
+rEyeY = 5.1;
+
+//Adjust the position of the right eye on the Z axis in mm
+rEyeZ = 6.9;
+
+//Angle of the right eye in degrees
+rEyeR = 45;
 
 /* [Misc.] */
 //Determine how nice round parts are
@@ -49,8 +83,25 @@ union(){
                 }
             }
         }
-        translate([bodyD / 3, 0, bodyD / 2.75]){
-            sphere(d =4);
+        if(hasMEye){
+            translate([mEyeX, mEyeY, mEyeZ]){
+                sphere(d = mEyeSize);
+                translate([mEyeSize / 2, 0, 0]){
+                    sphere(d=mEyeSize / 5);
+                }
+            }
+        }
+        if(hasREye){
+            translate([rEyeX, rEyeY, rEyeZ]){
+                rotate([-rEyeR, 0, 0]){
+                    scale([1,0.75,1]){
+                        sphere(d=rEyeSize);
+                    }
+                }
+                translate([rEyeSize / 2, 0, 0]){
+                    sphere(d=rEyeSize / 5);
+                }
+            }
         }
     }
 }
