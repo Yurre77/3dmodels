@@ -14,10 +14,13 @@ baseD = 20.0;
 
 /* [Slime] */
 //Slime body diameter in mm
-bodyD = 19;
+bodyD = 19.1;
+
+//Determine whether it has a mouth or not
+hasMouth = true;
 
 //Mouth size of the slime in mm
-mouth = 5;
+mouth = 5.1;
 
 /* [Misc.] */
 //Determine how nice round parts are
@@ -38,12 +41,16 @@ union(){
             translate([0,0,-7]){
                 cube([bodyD, bodyD, 6], center = true);
             }
-            translate([bodyD / 2, 0,0]){
-                scale([0.5,1,0.5]){
-                    sphere(d = mouth);
+            if(hasMouth){
+                translate([bodyD / 2, 0,0]){
+                    scale([0.5,1,0.5]){
+                        sphere(d = mouth);
+                    }
                 }
             }
         }
-        
+        translate([bodyD / 3, 0, bodyD / 2.75]){
+            sphere(d =4);
+        }
     }
 }
