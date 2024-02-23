@@ -56,6 +56,24 @@ rEyeZ = 6.9;
 //Angle of the right eye in degrees
 rEyeR = 45;
 
+//Determine whether the slime has the left eye or not
+hasLEye = true;
+
+//Determine the size of the left eye in mm
+lEyeSize = 4;
+
+//Adjust the position of the left eye on the X axis in mm
+lEyeX = 5.5;
+
+//Adjust the position of the left eye on the Y axis in mm
+lEyeY = -5.1;
+
+//Adjust the position of the left eye on the Z axis in mm
+lEyeZ = 6.9;
+
+//Angle of the left eye in degrees
+lEyeR = 45;
+
 /* [Misc.] */
 //Determine how nice round parts are
 resolution = 360;
@@ -100,6 +118,18 @@ union(){
                 }
                 translate([rEyeSize / 2, 0, 0]){
                     sphere(d=rEyeSize / 5);
+                }
+            }
+        }
+        if(hasLEye){
+            translate([lEyeX, lEyeY, lEyeZ]){
+                rotate([lEyeR, 0, 0]){
+                    scale([1,0.75,1]){
+                        sphere(d=lEyeSize);
+                    }
+                }
+                translate([lEyeSize / 2, 0, 0]){
+                    sphere(d=lEyeSize / 5);
                 }
             }
         }
