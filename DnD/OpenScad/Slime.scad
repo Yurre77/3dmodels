@@ -87,65 +87,83 @@ lEyeR = 45;
 //Determine how nice round parts are
 resolution = 360;
 
+//Determine whether to put text on the bottom or not
+hasText = true;
+
+//Determine the text
+bText = "Slime";
+
+//Determine the size of the text
+bTextSize = 2.5;
+
 bottom = hasBase ? baseHeight : 0;
 
 $fn = resolution;
 
 //begin modelling
-union(){
-    if(hasBase){
-        cylinder(h = baseHeight, d = baseD, center = false);
+difference(){
+    union(){
+        if(hasBase){
+            cylinder(h = baseHeight, d = baseD, center = false);
+        }
+        translate([0, 0, bottom + 4]){
+            difference(){
+                sphere(d = bodyD);
+                translate([0,0,-7]){
+                    cube([bodyD, bodyD, 6], center = true);
+                }
+                if(hasMouth){
+                    translate([bodyD / 2, 0,mouthZ]){
+                        scale([mouthDepth,1,mouthMod]){
+                            sphere(d = mouth);
+                        }
+                    }
+                }
+            }
+            if(hasMEye){
+                translate([mEyeX, mEyeY, mEyeZ]){
+                    difference(){
+                        sphere(d = mEyeSize);
+                        translate([mEyeSize / 2, 0, 0]){
+                            sphere(d=mEyeSize / 5);
+                        }
+                    }
+                }
+            }
+            if(hasREye){
+                translate([rEyeX, rEyeY, rEyeZ]){
+                    difference(){
+                        rotate([-rEyeR, 0, 0]){
+                            scale([1,0.75,1]){
+                                sphere(d=rEyeSize);
+                            }
+                        }
+                        translate([rEyeSize / 2, 0, 0]){
+                            sphere(d=rEyeSize / 5);
+                        }
+                    }
+                }
+            }
+            if(hasLEye){
+                translate([lEyeX, lEyeY, lEyeZ]){
+                    difference(){
+                        rotate([lEyeR, 0, 0]){
+                            scale([1,0.75,1]){
+                                sphere(d=lEyeSize);
+                            }
+                        }
+                        translate([lEyeSize / 2, 0, 0]){
+                            sphere(d=lEyeSize / 5);
+                        }
+                    }
+                }
+            }
+        }
     }
-    translate([0, 0, bottom + 4]){
-        difference(){
-            sphere(d = bodyD);
-            translate([0,0,-7]){
-                cube([bodyD, bodyD, 6], center = true);
-            }
-            if(hasMouth){
-                translate([bodyD / 2, 0,mouthZ]){
-                    scale([mouthDepth,1,mouthMod]){
-                        sphere(d = mouth);
-                    }
-                }
-            }
-        }
-        if(hasMEye){
-            translate([mEyeX, mEyeY, mEyeZ]){
-                difference(){
-                    sphere(d = mEyeSize);
-                    translate([mEyeSize / 2, 0, 0]){
-                        sphere(d=mEyeSize / 5);
-                    }
-                }
-            }
-        }
-        if(hasREye){
-            translate([rEyeX, rEyeY, rEyeZ]){
-                difference(){
-                    rotate([-rEyeR, 0, 0]){
-                        scale([1,0.75,1]){
-                            sphere(d=rEyeSize);
-                        }
-                    }
-                    translate([rEyeSize / 2, 0, 0]){
-                        sphere(d=rEyeSize / 5);
-                    }
-                }
-            }
-        }
-        if(hasLEye){
-            translate([lEyeX, lEyeY, lEyeZ]){
-                difference(){
-                    rotate([lEyeR, 0, 0]){
-                        scale([1,0.75,1]){
-                            sphere(d=lEyeSize);
-                        }
-                    }
-                    translate([lEyeSize / 2, 0, 0]){
-                        sphere(d=lEyeSize / 5);
-                    }
-                }
+    if(hasText){
+        translate([0,-1,0]){
+            linear_extrude(2, center = true){
+                text(bText, bTextSize, halign = "center");
             }
         }
     }
