@@ -103,33 +103,39 @@ union(){
         }
         if(hasMEye){
             translate([mEyeX, mEyeY, mEyeZ]){
-                sphere(d = mEyeSize);
-                translate([mEyeSize / 2, 0, 0]){
-                    sphere(d=mEyeSize / 5);
+                difference(){
+                    sphere(d = mEyeSize);
+                    translate([mEyeSize / 2, 0, 0]){
+                        sphere(d=mEyeSize / 5);
+                    }
                 }
             }
         }
         if(hasREye){
             translate([rEyeX, rEyeY, rEyeZ]){
-                rotate([-rEyeR, 0, 0]){
-                    scale([1,0.75,1]){
-                        sphere(d=rEyeSize);
+                difference(){
+                    rotate([-rEyeR, 0, 0]){
+                        scale([1,0.75,1]){
+                            sphere(d=rEyeSize);
+                        }
                     }
-                }
-                translate([rEyeSize / 2, 0, 0]){
-                    sphere(d=rEyeSize / 5);
+                    translate([rEyeSize / 2, 0, 0]){
+                        sphere(d=rEyeSize / 5);
+                    }
                 }
             }
         }
         if(hasLEye){
             translate([lEyeX, lEyeY, lEyeZ]){
-                rotate([lEyeR, 0, 0]){
-                    scale([1,0.75,1]){
-                        sphere(d=lEyeSize);
+                difference(){
+                    rotate([lEyeR, 0, 0]){
+                        scale([1,0.75,1]){
+                            sphere(d=lEyeSize);
+                        }
                     }
-                }
-                translate([lEyeSize / 2, 0, 0]){
-                    sphere(d=lEyeSize / 5);
+                    translate([lEyeSize / 2, 0, 0]){
+                        sphere(d=lEyeSize / 5);
+                    }
                 }
             }
         }
