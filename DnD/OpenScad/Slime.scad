@@ -161,9 +161,11 @@ difference(){
         }
     }
     if(hasText){
-        translate([0,-1,0]){
+        translate([0,1,0]){
             linear_extrude(2, center = true){
-                text(bText, bTextSize, halign = "center");
+                rotate([180,0,0]){
+                    text(bText, bTextSize, halign = "center", direction = "ltr");
+                }
             }
         }
     }
