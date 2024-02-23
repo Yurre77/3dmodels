@@ -22,6 +22,15 @@ hasMouth = true;
 //Mouth size of the slime in mm
 mouth = 5.1;
 
+//Mouth depth scale modifier
+mouthDepth = 0.5;
+
+//Mouth height modifier
+mouthMod = 0.5;
+
+//Adjust the position of the mouth on the Z axis
+mouthZ = 0.1;
+
 /* [Eyes] */
 //determine whether the slime has a middle eye
 hasMEye = false;
@@ -94,8 +103,8 @@ union(){
                 cube([bodyD, bodyD, 6], center = true);
             }
             if(hasMouth){
-                translate([bodyD / 2, 0,0]){
-                    scale([0.5,1,0.5]){
+                translate([bodyD / 2, 0,mouthZ]){
+                    scale([mouthDepth,1,mouthMod]){
                         sphere(d = mouth);
                     }
                 }
