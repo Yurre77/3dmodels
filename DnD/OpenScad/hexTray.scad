@@ -5,14 +5,14 @@
 
 /*[params]*/
 
-hexTray(100, 180, 31);
+hexTray(100, 180, 26);
 
 module hexTray(trayX = 100, trayY = 180, trayZ = 31){
     union(){
         difference(){
             cube([trayX - 15, trayY - 10, trayZ], center = true);
             translate([-(trayX / 4),-(trayY / (180 / 70)),1]){
-            hexPattern(trayY, trayX, 30, 15, 1);
+            hexPattern(trayY, trayX, trayZ - 1, 15, 1);
             }
         translate([0, trayX /1.3,-trayZ / 2]){
             sphere(d = 10.2);
