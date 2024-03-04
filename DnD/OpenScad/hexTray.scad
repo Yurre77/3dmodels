@@ -4,15 +4,28 @@
 //@Version: 1
 
 /*[params]*/
-$fn = 6;
 
 hexTray(100, 180, 31);
 
 module hexTray(trayX = 100, trayY = 180, trayZ = 31){
-    difference(){
-        cube([trayX, trayY, trayZ], center = true);
-        translate([-(trayX / 4),-70,1]){
+    union(){
+        difference(){
+            cube([trayX - 15, trayY - 10, trayZ], center = true);
+            translate([-(trayX / 4),-(trayY / (180 / 70)),1]){
             hexPattern(trayY, trayX, 30, 15, 1);
+            }
+        translate([0, trayX /1.3,-trayZ / 2]){
+            sphere(d = 10.2);
+        }
+        translate([0, -trayX /1.3,-trayZ / 2]){
+            sphere(d = 10.2);
+        }
+        }
+        translate([0, trayX /1.3,trayZ / 2]){
+            sphere(d = 10);
+        }
+        translate([0, -trayX /1.3,trayZ / 2]){
+            sphere(d = 10);
         }
     }
 }
