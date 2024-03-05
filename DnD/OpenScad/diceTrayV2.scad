@@ -1,15 +1,18 @@
 include <BOSL2/std.scad>
 
-hexTray();
+hexTray(4,2,13,13,1,2);
 
-module hexTray(L=4,W=2,Z=13, hexR=13, iWallT=1,oWallT=1){
+module hexTray(L=4,W=2,Z=13, hexR=13, iWallT=1,oWallT=2, magnetD=5, magnetH=2){
+    X=(((W*(3/4))+0.25)*((hexR+(iWallT/2))*2));
+    Y=(L*(sqrt(3)*(hexR+(iWallT/2))));
+    echo("",Y);
     difference(){
-        X=(((W*(3/4))+0.25)*((hexR+(iWallT/2))*2));
-        Y=(L*(sqrt(3)*(hexR+(iWallT/2))));
-        echo("",X);
-        cuboid([X,Y,Z], p1 = [0,0,0]);
-        translate([(hexR+(iWallT/2)),(sqrt(3)/2)*(hexR+iWallT/2),(Z/2)+(oWallT/2)]){
+         cuboid([X+oWallT,Y+oWallT,Z], p1 = [0,0,0], rounding=4, edges=[BOTTOM,FRONT+LEFT,FRONT+RIGHT,BACK+LEFT,BACK+RIGHT]);
+         translate([(hexR+(iWallT/2))+(oWallT/2),(sqrt(3)/2)*(hexR+iWallT/2)+(oWallT/2),(Z/2)+(oWallT/2)]){
             hexGrid(L,W,hexR,Z,iWallT);
+        }
+        translate([0,Y/2, 12]){
+            cylinder(h=magnetH,d=magnetD,center=true,$fn=36);
         }
     }
 }
