@@ -2,15 +2,14 @@ include <BOSL2/std.scad>
 
 hexTray();
 
-module hexTray(X=50, Y=95, Z=14, hexR=13, iWallT=1,oWallT=1){
-    xAmount = (floor(Y / ((sqrt(3)/2)*(hexR+(iWallT/2)))))/2;
-    yAmount = round(floor(X / (hexR+(iWallT/2)))/2);
-    echo("", yAmount);
+module hexTray(L=4,W=2,Z=13, hexR=13, iWallT=1,oWallT=1){
     difference(){
-        hexRfr = 13 + (iWallT/2);
+        X=(((W*(3/4))+0.25)*((hexR+(iWallT/2))*2));
+        Y=(L*(sqrt(3)*(hexR+(iWallT/2))));
+        echo("",X);
         cuboid([X,Y,Z], p1 = [0,0,0]);
-        translate([hexRfr + oWallT,(sqrt(3)/2)*hexRfr+ oWallT,(Z/2)+(oWallT /2)]){
-            hexGrid(xAmount,yAmount,hexR,13,1); 
+        translate([(hexR+(iWallT/2)),(sqrt(3)/2)*(hexR+iWallT/2),(Z/2)+(oWallT/2)]){
+            hexGrid(L,W,hexR,Z,iWallT);
         }
     }
 }

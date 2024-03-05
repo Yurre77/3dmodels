@@ -14,12 +14,12 @@ module hexTray(trayX = 100, trayY = 180, trayZ = 31){
             translate([-(trayX / 4),-(trayY / (180 / 70)),1]){
             hexPattern(trayY, trayX, trayZ - 1, 15, 1);
             }
-        translate([0, trayX /1.3,-trayZ / 2]){
-            sphere(d = 10.2);
-        }
-        translate([0, -trayX /1.3,-trayZ / 2]){
-            sphere(d = 10.2);
-        }
+            translate([0, trayX /1.3,-trayZ / 2]){
+                sphere(d = 10.2);
+            }
+            translate([0, -trayX /1.3,-trayZ / 2]){
+                sphere(d = 10.2);
+            }
         }
         translate([0, trayX /1.3,trayZ / 2]){
             sphere(d = 10);
