@@ -2,9 +2,9 @@ include <BOSL2/std.scad>
 
 hexTray();
 
-module hexTray(X=51, Y=95, Z=14, hexR=13, iWallT=1,oWallT=1){
-    xAmount = floor(X / ((sqrt(3)/2)*(hexR+(iWallT/2))));
-    yAmount = floor(X / (hexR+(iWallT/2))) - 1;
+module hexTray(X=50, Y=95, Z=14, hexR=13, iWallT=1,oWallT=1){
+    xAmount = (floor(Y / ((sqrt(3)/2)*(hexR+(iWallT/2)))))/2;
+    yAmount = round(floor(X / (hexR+(iWallT/2)))/2);
     echo("", yAmount);
     difference(){
         hexRfr = 13 + (iWallT/2);
