@@ -11,7 +11,7 @@ module hexTray(L=4,W=2,Z=13, hexR=13, iWallT=1,oWallT=2, magnetD=5, magnetH=2){
          translate([(hexR+(iWallT/2))+(oWallT/2),(sqrt(3)/2)*(hexR+iWallT/2)+(oWallT/2),(Z/2)+(oWallT/2)]){
             hexGrid(L,W,hexR,Z,iWallT);
         }
-        translate([0,Y/2, 12]){
+        translate([(magnetD/2)+(oWallT/2),Y/2, 12]){
             cylinder(h=magnetH,d=magnetD,center=true,$fn=36);
         }
     }
