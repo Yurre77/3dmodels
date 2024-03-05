@@ -1,12 +1,14 @@
 include <BOSL2/std.scad>
 
-difference(){
-    cuboid([52, 100, 15], p1=[-15,-14,-2], rounding=4, edges=[BOTTOM+LEFT+RIGHT+BACK+FRONT, FRONT+RIGHT, BACK+LEFT, FRONT+LEFT, BACK+RIGHT]);
-    translate([0,0,8]){
-        hexGrid(4, 2, 13, 13, 2);
-    }
-    translate([33, -10, 11]){
-        //cylinder(h = 2.01, d = 5, $fn=360);
+hexTray();
+
+module hexTray(X=51, Y=95, Z=14, hexR=13, iWallT=1,oWallT=1){
+    difference(){
+        hexRfr = 13 + (iWallT/2);
+        cuboid([X,Y,Z], p1 = [0,0,0]);
+        translate([hexRfr + oWallT,(sqrt(3)/2)*hexRfr+ oWallT,(Z/2)+(oWallT /2)]){
+            hexGrid(4,2,13,13,1); 
+        }
     }
 }
 
