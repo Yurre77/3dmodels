@@ -74,13 +74,16 @@ module hexTray(L=4,W=2,Z=13,hexR=13,iWallT=1,oWallT=2, magnetD=5, magnetH=2){
          translate([(hexR+(iWallT/2))+(oWallT/2),(sqrt(3)/2)*(hexR+iWallT/2)+(oWallT/2),(Z/2)+(oWallT/2)]){
             hexGrid(L,W,hexR,Z,iWallT);
         }
-        translate([(magnetD/2)+(oWallT/2),Y/2, Z]){
+        translate([(magnetD/2)+(oWallT/2),((L-1)*(sqrt(3)*(hexR+(iWallT/2))))+(oWallT/2), Z]){
+            cylinder(h=magnetH,d=magnetD,center=true,$fn=36);
+        }
+        translate([(magnetD/2)+(oWallT/2),(sqrt(3)*(hexR+(iWallT/2)))+(oWallT/2), Z]){
             cylinder(h=magnetH,d=magnetD,center=true,$fn=36);
         }
         translate([(X-(magnetD/2)),(magnetD/2)+(oWallT/2),Z]){
             cylinder(h=magnetH,d=magnetD,center=true,$fn=36);
         }
-        translate([(X-(magnetD/2)),Y-((magnetD/2)-(oWallT/2)),Z]){
+        translate([(X-(magnetD/2)),(L*(sqrt(3)*(hexR+(iWallT/2))))-((magnetD/2)-(oWallT/2)),Z]){
             cylinder(h=magnetH,d=magnetD,center=true,$fn=36);
         }
     }
@@ -95,13 +98,16 @@ module hexLid(L=4,W=2,Z=13, hexR=13, iWallT=1,oWallT=2, magnetD=5, magnetH=2, pa
          translate([(hexR+(iWallT/2))+(oWallT/2),(sqrt(3)/2)*(hexR+iWallT/2)+(oWallT/2),(Z/2)+(oWallT/2)]){
             hexGrid(L,W,hexR,Z,iWallT);
         }
-        translate([(magnetD/2)+(oWallT/2),Y/2, Z]){
+        translate([(magnetD/2)+(oWallT/2),((L-1)*(sqrt(3)*(hexR+(iWallT/2))))+(oWallT/2), Z]){
+            cylinder(h=magnetH,d=magnetD,center=true,$fn=36);
+        }
+        translate([(magnetD/2)+(oWallT/2),(sqrt(3)*(hexR+(iWallT/2)))+(oWallT/2), Z]){
             cylinder(h=magnetH,d=magnetD,center=true,$fn=36);
         }
         translate([(X-(magnetD/2)),(magnetD/2)+(oWallT/2),Z]){
             cylinder(h=magnetH,d=magnetD,center=true,$fn=36);
         }
-        translate([(X-(magnetD/2)),Y-((magnetD/2)-(oWallT/2)),Z]){
+        translate([(X-(magnetD/2)),(L*(sqrt(3)*(hexR+(iWallT/2))))-((magnetD/2)-(oWallT/2)),Z]){
             cylinder(h=magnetH,d=magnetD,center=true,$fn=36);
         }
         translate([(hexR+(iWallT/2))/3,oWallT/2,0]){
