@@ -1,8 +1,71 @@
 include <BOSL2/std.scad>
 
-hexLid(4,2,13,13,1,2);
+/*[params]*/
+//length of the tray and lid in hexagons
+L=4;
+//width of the tray and lid in hexagons
+W=2;
+//Height of each hexagon in mm
+Z=13;
+//the radius of the internal hexagons in mm
+hexR=13;
+//spacing between the internal hexagons in mm
+iWallT=1;
+//the size of the case walls in mm
+oWallT=2;
+//diameter of magnets in mm
+magnetD=5;
+//height of the magnets in mm
+magnetH=2;
+//length of the pattern in hexagons
+patternL=5;
+//width of the pattern in hexagons
+patternW=3;
+//radius of the pattern hexagons in mm
+patternR=13;
+//spacing of the pattern hexagons in mm
+patternS=1;
+//text on the lid
+text="Dice";
+//size of the text
+tSize=12;
+//determine whether or not to render the entire case
+renderCase=true;
+//determine whether or not to render the tray seperately
+renderTray=true;
+//determine whether or not to render the lid seperately
+renderLid=true;
+//determine whether or not to render the text for the lid seperately or not
+renderText=true;
 
-module hexTray(L=4,W=2,Z=13, hexR=13, iWallT=1,oWallT=2, magnetD=5, magnetH=2){
+if(renderCase){
+    hexTray(L,W,Z,hexR,iWallT,oWallT,magnetD,magnetH);
+    translate([0,(L*(sqrt(3)*(hexR+(iWallT/2))))+oWallT,Z*2]){
+        rotate([180,0,0]){
+            hexLid(L,W,Z,hexR,iWallT,oWallT,magnetD,magnetH, patternL,patternW,patternR,patternS,text,tSize);
+        }
+    }
+}
+
+if(renderTray){
+    translate([((W*L)/2)*Z,0,0]){
+        hexTray(L,W,Z,hexR,iWallT,oWallT,magnetD,magnetH);
+    }
+}
+
+if(renderLid){
+    translate([-(((W*L)/2)*Z),0,0]){
+        hexLid(L,W,Z,hexR,iWallT,oWallT,magnetD,magnetH, patternL,patternW,patternR,patternS,text,tSize);
+    }
+}
+
+if(renderText){
+    translate([-(((W*L)/2)*Z)-tSize,tSize*2,0]){
+        text3d(text,h=oWallT/2,anchor=CENTER,font="Cubic",spin=90,direction="ltr",size=tSize);
+    }
+}
+
+module hexTray(L=4,W=2,Z=13,hexR=13,iWallT=1,oWallT=2, magnetD=5, magnetH=2){
     X=(((W*(3/4))+0.25)*((hexR+(iWallT/2))*2));
     Y=(L*(sqrt(3)*(hexR+(iWallT/2))));
     echo("",Y);
@@ -44,8 +107,10 @@ module hexLid(L=4,W=2,Z=13, hexR=13, iWallT=1,oWallT=2, magnetD=5, magnetH=2, pa
         translate([(hexR+(iWallT/2))/3,oWallT/2,0]){
             hexGrid(patternL,patternW,patternR,(oWallT/2),patternS,true);
         }
-        translate([(X/2+((tSize/2)-1)),Y/2,0]){
-            text3d(text,h=oWallT/2,anchor=CENTER,font="Cubic",spin=90,direction="ltr",size=tSize);
+        translate([(X/2+((tSize/2))),Y/2,0]){
+            rotate([180,0,0]){
+                text3d(text,h=oWallT/2,anchor=CENTER,font="Cubic",spin=90,direction="ltr",size=tSize);
+            }
         }
     }
 }
