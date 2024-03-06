@@ -14,7 +14,7 @@ iWallT=1;
 //the size of the case walls in mm
 oWallT=2;
 //diameter of magnets in mm
-magnetD=5;
+magnetD=5.1;
 //height of the magnets in mm
 magnetH=2;
 //length of the pattern in hexagons
@@ -70,17 +70,17 @@ module hexTray(L=4,W=2,Z=13,hexR=13,iWallT=1,oWallT=2, magnetD=5, magnetH=2){
     Y=(L*(sqrt(3)*(hexR+(iWallT/2))));
     echo("",Y);
     difference(){
-         cuboid([X+oWallT,Y+oWallT,Z], p1 = [0,0,0], rounding=3, edges=[BOTTOM,FRONT+LEFT,FRONT+RIGHT,BACK+LEFT,BACK+RIGHT]);
+         cuboid([X+oWallT,Y+oWallT,Z+(oWallT/2)], p1 = [0,0,0], rounding=3, edges=[BOTTOM,FRONT+LEFT,FRONT+RIGHT,BACK+LEFT,BACK+RIGHT]);
          translate([(hexR+(iWallT/2))+(oWallT/2),(sqrt(3)/2)*(hexR+iWallT/2)+(oWallT/2),(Z/2)+(oWallT/2)]){
             hexGrid(L,W,hexR,Z,iWallT);
         }
-        translate([(magnetD/2)+(oWallT/2),Y/2, Z-(magnetH/2)]){
+        translate([(magnetD/2)+(oWallT/2),Y/2, Z]){
             cylinder(h=magnetH,d=magnetD,center=true,$fn=36);
         }
-        translate([(X-(magnetD/2)),(magnetD/2)+(oWallT/2),Z-(magnetH/2)]){
+        translate([(X-(magnetD/2)),(magnetD/2)+(oWallT/2),Z]){
             cylinder(h=magnetH,d=magnetD,center=true,$fn=36);
         }
-        translate([(X-(magnetD/2)),Y-((magnetD/2)-(oWallT/2)),Z-(magnetH/2)]){
+        translate([(X-(magnetD/2)),Y-((magnetD/2)-(oWallT/2)),Z]){
             cylinder(h=magnetH,d=magnetD,center=true,$fn=36);
         }
     }
@@ -91,17 +91,17 @@ module hexLid(L=4,W=2,Z=13, hexR=13, iWallT=1,oWallT=2, magnetD=5, magnetH=2, pa
     Y=(L*(sqrt(3)*(hexR+(iWallT/2))));
     echo("",Y);
     difference(){
-         cuboid([X+oWallT,Y+oWallT,Z], p1 = [0,0,0], rounding=3, edges=[BOTTOM,FRONT+LEFT,FRONT+RIGHT,BACK+LEFT,BACK+RIGHT]);
+         cuboid([X+oWallT,Y+oWallT,Z+(oWallT/2)], p1 = [0,0,0], rounding=3, edges=[BOTTOM,FRONT+LEFT,FRONT+RIGHT,BACK+LEFT,BACK+RIGHT]);
          translate([(hexR+(iWallT/2))+(oWallT/2),(sqrt(3)/2)*(hexR+iWallT/2)+(oWallT/2),(Z/2)+(oWallT/2)]){
             hexGrid(L,W,hexR,Z,iWallT);
         }
-        translate([(magnetD/2)+(oWallT/2),Y/2, Z-(magnetH/2)]){
+        translate([(magnetD/2)+(oWallT/2),Y/2, Z]){
             cylinder(h=magnetH,d=magnetD,center=true,$fn=36);
         }
-        translate([(X-(magnetD/2)),(magnetD/2)+(oWallT/2),Z-(magnetH/2)]){
+        translate([(X-(magnetD/2)),(magnetD/2)+(oWallT/2),Z]){
             cylinder(h=magnetH,d=magnetD,center=true,$fn=36);
         }
-        translate([(X-(magnetD/2)),Y-((magnetD/2)-(oWallT/2)),Z-(magnetH/2)]){
+        translate([(X-(magnetD/2)),Y-((magnetD/2)-(oWallT/2)),Z]){
             cylinder(h=magnetH,d=magnetD,center=true,$fn=36);
         }
         translate([(hexR+(iWallT/2))/3,oWallT/2,0]){

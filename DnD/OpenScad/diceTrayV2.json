@@ -1,0 +1,25 @@
+{
+    "parameterSets": {
+        "design default values": {
+            "L": "4",
+            "W": "2",
+            "Z": "15",
+            "hexR": "15",
+            "iWallT": "1",
+            "magnetD": "5",
+            "magnetH": "2",
+            "oWallT": "2",
+            "patternL": "5",
+            "patternR": "13",
+            "patternS": "1",
+            "patternW": "3",
+            "renderCase": "false",
+            "renderLid": "true",
+            "renderText": "true",
+            "renderTray": "true",
+            "tSize": "12",
+            "text": "Dice"
+        }
+    },
+    "fileFormatVersion": "1"
+}
