@@ -1,6 +1,6 @@
 include <BOSL2/std.scad>
 
-hexTray(4,2,13,13,1,2);
+hexLid(4,2,13,13,1,2);
 
 module hexTray(L=4,W=2,Z=13, hexR=13, iWallT=1,oWallT=2, magnetD=5, magnetH=2){
     X=(((W*(3/4))+0.25)*((hexR+(iWallT/2))*2));
@@ -11,8 +11,41 @@ module hexTray(L=4,W=2,Z=13, hexR=13, iWallT=1,oWallT=2, magnetD=5, magnetH=2){
          translate([(hexR+(iWallT/2))+(oWallT/2),(sqrt(3)/2)*(hexR+iWallT/2)+(oWallT/2),(Z/2)+(oWallT/2)]){
             hexGrid(L,W,hexR,Z,iWallT);
         }
-        translate([(magnetD/2)+(oWallT/2),Y/2, 12]){
+        translate([(magnetD/2)+(oWallT/2),Y/2, Z-(magnetH/2)]){
             cylinder(h=magnetH,d=magnetD,center=true,$fn=36);
+        }
+        translate([(X-(magnetD/2)),(magnetD/2)+(oWallT/2),Z-(magnetH/2)]){
+            cylinder(h=magnetH,d=magnetD,center=true,$fn=36);
+        }
+        translate([(X-(magnetD/2)),Y-((magnetD/2)-(oWallT/2)),Z-(magnetH/2)]){
+            cylinder(h=magnetH,d=magnetD,center=true,$fn=36);
+        }
+    }
+}
+
+module hexLid(L=4,W=2,Z=13, hexR=13, iWallT=1,oWallT=2, magnetD=5, magnetH=2){
+    X=(((W*(3/4))+0.25)*((hexR+(iWallT/2))*2));
+    Y=(L*(sqrt(3)*(hexR+(iWallT/2))));
+    echo("",Y);
+    difference(){
+         cuboid([X+oWallT,Y+oWallT,Z], p1 = [0,0,0], rounding=4, edges=[BOTTOM,FRONT+LEFT,FRONT+RIGHT,BACK+LEFT,BACK+RIGHT]);
+         translate([(hexR+(iWallT/2))+(oWallT/2),(sqrt(3)/2)*(hexR+iWallT/2)+(oWallT/2),(Z/2)+(oWallT/2)]){
+            hexGrid(L,W,hexR,Z,iWallT);
+        }
+        translate([(magnetD/2)+(oWallT/2),Y/2, Z-(magnetH/2)]){
+            cylinder(h=magnetH,d=magnetD,center=true,$fn=36);
+        }
+        translate([(X-(magnetD/2)),(magnetD/2)+(oWallT/2),Z-(magnetH/2)]){
+            cylinder(h=magnetH,d=magnetD,center=true,$fn=36);
+        }
+        translate([(X-(magnetD/2)),Y-((magnetD/2)-(oWallT/2)),Z-(magnetH/2)]){
+            cylinder(h=magnetH,d=magnetD,center=true,$fn=36);
+        }
+        translate([(hexR+(iWallT/2))/3,oWallT/2,0]){
+            hexGrid(L+2,W+1,hexR,(oWallT/2),iWallT,true);
+        }
+        translate([X/2,Y/2,0]){
+            
         }
     }
 }
