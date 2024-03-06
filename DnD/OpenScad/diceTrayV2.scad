@@ -23,7 +23,7 @@ module hexTray(L=4,W=2,Z=13, hexR=13, iWallT=1,oWallT=2, magnetD=5, magnetH=2){
     }
 }
 
-module hexLid(L=4,W=2,Z=13, hexR=13, iWallT=1,oWallT=2, magnetD=5, magnetH=2){
+module hexLid(L=4,W=2,Z=13, hexR=13, iWallT=1,oWallT=2, magnetD=5, magnetH=2, patternL=5, patternW=3, patternR=13, patternS=1,text="Dice",tSize=12){
     X=(((W*(3/4))+0.25)*((hexR+(iWallT/2))*2));
     Y=(L*(sqrt(3)*(hexR+(iWallT/2))));
     echo("",Y);
@@ -42,10 +42,10 @@ module hexLid(L=4,W=2,Z=13, hexR=13, iWallT=1,oWallT=2, magnetD=5, magnetH=2){
             cylinder(h=magnetH,d=magnetD,center=true,$fn=36);
         }
         translate([(hexR+(iWallT/2))/3,oWallT/2,0]){
-            hexGrid(L+2,W+1,hexR,(oWallT/2),iWallT,true);
+            hexGrid(patternL,patternW,patternR,(oWallT/2),patternS,true);
         }
-        translate([X/2,Y/2,0]){
-            
+        translate([(X/2+((tSize/2)-1)),Y/2,0]){
+            text3d(text,h=oWallT/2,anchor=CENTER,font="Cubic",spin=90,direction="ltr",size=tSize);
         }
     }
 }
