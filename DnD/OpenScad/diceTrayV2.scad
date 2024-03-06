@@ -70,7 +70,7 @@ module hexTray(L=4,W=2,Z=13,hexR=13,iWallT=1,oWallT=2, magnetD=5, magnetH=2){
     Y=(L*(sqrt(3)*(hexR+(iWallT/2))));
     echo("",Y);
     difference(){
-         cuboid([X+oWallT,Y+oWallT,Z], p1 = [0,0,0], rounding=4, edges=[BOTTOM,FRONT+LEFT,FRONT+RIGHT,BACK+LEFT,BACK+RIGHT]);
+         cuboid([X+oWallT,Y+oWallT,Z], p1 = [0,0,0], rounding=3, edges=[BOTTOM,FRONT+LEFT,FRONT+RIGHT,BACK+LEFT,BACK+RIGHT]);
          translate([(hexR+(iWallT/2))+(oWallT/2),(sqrt(3)/2)*(hexR+iWallT/2)+(oWallT/2),(Z/2)+(oWallT/2)]){
             hexGrid(L,W,hexR,Z,iWallT);
         }
@@ -91,7 +91,7 @@ module hexLid(L=4,W=2,Z=13, hexR=13, iWallT=1,oWallT=2, magnetD=5, magnetH=2, pa
     Y=(L*(sqrt(3)*(hexR+(iWallT/2))));
     echo("",Y);
     difference(){
-         cuboid([X+oWallT,Y+oWallT,Z], p1 = [0,0,0], rounding=4, edges=[BOTTOM,FRONT+LEFT,FRONT+RIGHT,BACK+LEFT,BACK+RIGHT]);
+         cuboid([X+oWallT,Y+oWallT,Z], p1 = [0,0,0], rounding=3, edges=[BOTTOM,FRONT+LEFT,FRONT+RIGHT,BACK+LEFT,BACK+RIGHT]);
          translate([(hexR+(iWallT/2))+(oWallT/2),(sqrt(3)/2)*(hexR+iWallT/2)+(oWallT/2),(Z/2)+(oWallT/2)]){
             hexGrid(L,W,hexR,Z,iWallT);
         }
