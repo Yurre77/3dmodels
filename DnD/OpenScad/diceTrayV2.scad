@@ -61,7 +61,7 @@ if(renderLid){
 
 if(renderText){
     translate([-(((W*L)/2)*Z)-tSize,tSize*2,0]){
-        text3d(text,h=oWallT/2,anchor=CENTER,font="TT Octosquares Trial Variable:style=Regular",spin=90,direction="ltr",size=tSize);
+        text3d(text,h=oWallT/2,anchor=CENTER,font="TT Octosquares Trl:style=Rg",spin=90,direction="ltr",size=tSize);
     }
 }
 
@@ -115,7 +115,7 @@ module hexLid(L=4,W=2,Z=13, hexR=13, iWallT=1,oWallT=2, magnetD=5, magnetH=2, pa
         }
         translate([(X/2+((tSize/2))),Y/2,0]){
             rotate([180,0,0]){
-                text3d(text,h=oWallT/2,anchor=CENTER,font="TT Octosquares Trial Variable:style=Regular",spin=90,direction="ltr",size=tSize);
+                text3d(text,h=oWallT/2,anchor=CENTER,font="TT Octosquares Trl:style=Rg",spin=90,direction="ltr",size=tSize);
             }
         }
     }
